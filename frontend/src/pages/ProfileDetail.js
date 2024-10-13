@@ -1,4 +1,3 @@
-// src/pages/ProfileDetail.js
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import profilesData from '../components/Profiles'; // Import the profiles data
@@ -26,27 +25,40 @@ const ProfileDetail = () => {
           <h1 className="text-3xl font-bold text-center">{profile.name}</h1>
           <p className="text-lg text-gray-600 text-center">{profile.description}</p>
           <p className="mt-2 text-gray-500 text-center">{profile.bio}</p>
-          
-          {/* New fields for contact and interests */}
-          <div className="mt-4">
-            <h2 className="text-xl font-semibold">Contact Information</h2>
-            <p className="text-gray-700">{profile.contact}</p>
-          </div>
-          <div className="mt-4">
-            <h2 className="text-xl font-semibold">Interests</h2>
-            {profile.interests && profile.interests.length > 0 ? (
-              <ul className="list-disc list-inside">
-                {profile.interests.map((interest, index) => (
-                  <li key={index} className="text-gray-700">{interest}</li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-gray-700">No interests listed.</p> // Handle case where interests are not defined
-            )}
+
+          {/* Data Section in Columns */}
+          <div className="flex flex-col mt-6 space-y-2 justify-center items-center"> {/* Flexbox for vertical layout with reduced spacing */}
+            {/* Address Field */}
+            <div className="flex justify-start items-center">
+              <h2 className="text-xl font-semibold mr-2">Address:</h2> {/* Added margin right */}
+              <p className="text-gray-700">{profile.addressText}</p> {/* Display the formatted address */}
+            </div>
+
+            {/* Contact Information */}
+            <div className="flex justify-start items-center">
+              <h2 className="text-xl font-semibold mr-2">Contact Information:</h2> {/* Added margin right */}
+              <p className="text-gray-700">{profile.contact}</p>
+            </div>
+
+            {/* Interests Section */}
+            <div className="flex justify-start items-center">
+              <h2 className="text-xl font-semibold mr-2">Interests:</h2> {/* Added margin right */}
+              <div className="flex space-x-4"> {/* Interests in a row with spacing */}
+                {profile.interests && profile.interests.length > 0 ? (
+                  profile.interests.map((interest, index) => (
+                    <p key={index} className="text-gray-700">{interest}</p>
+                  ))
+                ) : (
+                  <p className="text-gray-700">No interests listed.</p>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* Map Component */}
-          <Map latitude={profile.address.lat} longitude={profile.address.lng} />
+          <div className="mt-6">
+            <Map latitude={profile.address.lat} longitude={profile.address.lng} />
+          </div>
         </div>
       </div>
     </div>  
@@ -54,3 +66,4 @@ const ProfileDetail = () => {
 };
 
 export default ProfileDetail;
+

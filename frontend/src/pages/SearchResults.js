@@ -13,32 +13,29 @@ const SearchResults = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  
   useEffect(() => {
     if (!searchQuery) {
       navigate('/'); 
-    }else {
-        // Simulate a loading delay
-        const timer = setTimeout(() => {
-          setIsLoading(false); // Stop loading after 500ms
-        }, 500); // Adjust the delay as needed
-  
-        return () => clearTimeout(timer); // Cleanup timer on component unmount
-      }
-
+    } else {
+      const timer = setTimeout(() => {
+        setIsLoading(false); // Stop loading after 500ms
+      }, 500); // Adjust the delay as needed
+      return () => clearTimeout(timer); // Cleanup timer on component unmount
+    }
   }, [searchQuery, navigate]); // Dependencies include searchQuery and navigate
 
-  // Filter profiles only if searchQuery is not empty
+  // Filter profiles based on name and addressText
   const filteredProfiles = searchQuery
     ? profilesData.filter(profile =>
         profile.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        profile.addressText.toLowerCase().includes(searchQuery.toLowerCase()) ||
         profile.description.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : [];
 
-    if (isLoading) {
-        return <LoadingSpinner />;
-      }
+  if (isLoading) {
+    return <LoadingSpinner />; // Show loading spinner while loading
+  }
 
   return (
     <div className="container mx-auto p-6">

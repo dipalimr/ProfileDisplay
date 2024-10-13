@@ -11,6 +11,7 @@ export const profilesData = [
     description: 'Software Engineer at XYZ Company',
     bio: 'John has over 10 years of experience in software development...',
     address: { lat: 37.7749, lng: -122.4194 }, // San Francisco coordinates
+    addressText: 'San Francisco, CA, USA', // Manually added formatted address
     contact: 'john.doe@example.com', // New contact field
     interests: ['Coding', 'Music', 'Traveling'], // New interests field
   },
@@ -21,6 +22,7 @@ export const profilesData = [
     description: 'Product Designer at ABC Inc.',
     bio: 'Jane is a creative product designer...',
     address: { lat: 34.0522, lng: -118.2437 }, // Los Angeles coordinates
+    addressText: 'Los Angeles, CA, USA', // Manually added formatted address
     contact: 'jane.smith@example.com', // New contact field
     interests: ['Design', 'Art', 'Photography'], // New interests field
   },
@@ -31,6 +33,7 @@ export const profilesData = [
     description: 'Data Scientist at Tech Innovations',
     bio: 'Alice is a data scientist...',
     address: { lat: 40.7128, lng: -74.0060 }, // New York coordinates
+    addressText: 'New York, NY, USA', // Manually added formatted address
     contact: 'alice.johnson@example.com', // New contact field
     interests: ['AI', 'Machine Learning', 'Reading'], // New interests field
   },
@@ -41,6 +44,7 @@ export const profilesData = [
     description: 'Marketing Specialist at Creative Agency',
     bio: 'Bob has over 8 years of experience...',
     address: { lat: 41.8781, lng: -87.6298 }, // Chicago coordinates
+    addressText: 'Chicago, IL, USA', // Manually added formatted address
     contact: 'bob.brown@example.com', // New contact field
     interests: ['Marketing', 'Social Media', 'Writing'], // New interests field
   },
@@ -48,5 +52,3 @@ export const profilesData = [
 
 // Export the profilesData
 export default profilesData;
-
-

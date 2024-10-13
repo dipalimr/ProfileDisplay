@@ -115,7 +115,7 @@ const AdminPanel = () => {
             <h3 className="text-xl font-bold">{profile.name}</h3>
             <p>{profile.description}</p>
             <p>{profile.bio}</p>
-            <button onClick={() => handleEdit(index)} className="bg-yellow-500 text-white p-2 rounded mt-2">Edit</button>
+            <button onClick={() => handleEdit(index)} className="bg-blue-500 text-white p-2 rounded mt-2">Edit</button>
             <button onClick={() => handleDelete(index)} className="bg-red-500 text-white p-2 rounded mt-2 ml-2">Delete</button>
           </div>
         ))}

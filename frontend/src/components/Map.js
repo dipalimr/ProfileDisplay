@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { ClipLoader } from 'react-spinners';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZGVlcGFsaTY0IiwiYSI6ImNtMjRzM3NhbzBrMWIyanNqZDQ1azRoOGQifQ.JTsTtfXyEU0PBH5xr9FNdQ';  // Replace with your actual Mapbox token
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGVlcGFsaTY0IiwiYSI6ImNtMjRzM3NhbzBrMWIyanNqZDQ1azRoOGQifQ.JTsTtfXyEU0PBH5xr9FNdQ'; // Replace with your actual Mapbox token
 
 const Map = ({ latitude, longitude }) => {
   const mapContainerRef = useRef(null);  // Reference to the map container
@@ -9,9 +11,6 @@ const Map = ({ latitude, longitude }) => {
   const markerRef = useRef(null);  // Ref to store the marker instance
   const [loading, setLoading] = useState(true);  // Loading state for the map
   const [error, setError] = useState(null);  // State to handle errors
-
-  // Log the latitude and longitude for debugging
-  console.log('Latitude:', latitude, 'Longitude:', longitude);
 
   useEffect(() => {
     if (!latitude || !longitude) return;  // Ensure that both latitude and longitude are present
@@ -62,11 +61,11 @@ const Map = ({ latitude, longitude }) => {
   };
 
   return (
-    <div className="relative w-[800px] h-[400px] mx-auto"> {/* Set container width to 800px and centered */}
+    <div className="relative w-full h-[400px] mx-auto"> {/* Set container width and height */}
       {/* Show loading spinner while the map is loading */}
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 opacity-75">
-          <div className="loader"></div>
+          <ClipLoader color={"#123abc"} loading={loading} size={50} />
           <p>Loading map...</p>
         </div>
       )}

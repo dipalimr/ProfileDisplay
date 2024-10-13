@@ -1,50 +1,44 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Modal from './Modal'; // Import the modal component
+import React, { useEffect } from 'react';
+import { FiX } from 'react-icons/fi'; // Import the X icon from react-icons
+import Map from './Map'; // Import your Map component
 
-const ProfileCard = ({ profile }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+const Modal = ({ isOpen, onClose, profile }) => {
+  // Ensure background scroll is restored when modal closes
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'auto'; // Restore background scroll on unmount
+    };
+  }, []);
 
-  const handleSummaryClick = () => {
-    setIsModalOpen(true); // Open the modal
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false); // Close the modal
-  };
+  if (!isOpen) return null; // Don't render the modal if it's closed
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105 cursor-pointer">
-      <img 
-        src={profile.image} 
-        alt={profile.name} 
-        className="w-48 h-48 object-cover rounded-full mb-4 mx-auto" 
-      />
-      <h2 className="text-xl font-semibold text-center">{profile.name}</h2>
-      <p className="text-gray-600 text-center">{profile.description}</p>
-
-      <div className="flex justify-center mt-4 py-4">
-        {/* Summary Button */}
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+      {/* Modal content wrapper */}
+      <div className="bg-white rounded-lg p-6 w-[800px] mx-auto relative max-h-[90vh] overflow-y-auto">
         <button 
-          onClick={handleSummaryClick} 
-          className="bg-blue-500 text-white px-4 py-2 mx-2 hover:bg-blue-800 rounded-lg"
+          className="absolute top-4 right-4 text-gray-600 hover:text-red-600" 
+          onClick={onClose}
         >
-          Summary
+          <FiX size={24} /> {/* Render the X icon */}
         </button>
-        
-        {/* View Details Button */}
-        <Link 
-          to={`/profile/${profile.id}`} 
-          className="bg-green-500 text-white px-4 py-2 mx-2 hover:bg-green-800 rounded-lg"
-        >
-          View Details
-        </Link>
-      </div>
 
-      {/* Modal for Summary */}
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal} profile={profile} />
+        <h2 className="text-xl font-bold mb-4 text-center">Profile Summary</h2>
+        <img 
+          src={profile.image} 
+          alt={profile.name} 
+          className="w-48 h-48 object-cover rounded-full mb-4 mx-auto" 
+        />
+        <h3 className="text-lg font-semibold text-center">{profile.name}</h3>
+        <p className="text-center">{profile.description}</p>
+
+        {/* Map Component */}
+        <div className="mt-4">
+          <Map latitude={profile.address.lat} longitude={profile.address.lng} />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default ProfileCard;
+export default Modal;
