@@ -1,37 +1,4 @@
-// import React from 'react';
 
-// const SearchProfiles = ({ profiles }) => {
-//   const [searchTerm, setSearchTerm] = React.useState('');
-
-//   const filteredProfiles = profiles.filter(profile =>
-//     profile.name.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
-
-//   return (
-//     <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg">
-//       <input
-//         type="text"
-//         className="border border-gray-300 rounded-lg px-4 py-2 mb-4 w-full"
-//         placeholder="Search profiles"
-//         onChange={(e) => setSearchTerm(e.target.value)}
-//       />
-//       <div className="grid grid-cols-1 gap-4">
-//         {filteredProfiles.length > 0 ? (
-//           filteredProfiles.map((profile, index) => (
-//             <div key={index} className="bg-gray-100 p-4 rounded-lg">
-//               <h2 className="text-lg font-semibold">{profile.name}</h2>
-//               <p>{profile.description}</p>
-//             </div>
-//           ))
-//         ) : (
-//           <p>No profiles found.</p> // Message when no profiles match the search
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SearchProfiles;
 import React from 'react';
 
 const SearchProfiles = ({ profiles }) => {
